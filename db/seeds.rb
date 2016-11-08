@@ -5,3 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Component.create(
+    [
+        {name: 'Ser'},
+        {name: 'Parmezan'},
+        {name: 'Mozarella'},
+        {name: 'Szynka'},
+        {name: 'Salami'},
+        {name: 'Kurczak'},
+        {name: 'Boczek'},
+        {name: 'Pieczarki'},
+        {name: 'Papryka'},
+        {name: 'Cebula'},
+        {name: 'Oliwki'},
+        {name: 'Pomidor'},
+        {name: 'Chili'}
+    ]
+)

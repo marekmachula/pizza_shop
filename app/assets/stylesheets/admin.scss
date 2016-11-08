@@ -1,0 +1,23 @@
+ul.admin_components{
+  list-style: none;
+  li{
+    display: inline-block;
+    min-width: 20%;
+    padding: 5px;
+    font-weight: bolder;
+  }
+}
+.error_explanation{
+  ul{
+    li{
+      color: #8b0000;
+    }
+  }
+}
+.mt10{
+  margin-top: 10px;
+}
+.no_wrap{
+  width:1%;
+  white-space:nowrap;
+}

@@ -1,0 +1,33 @@
+= form_for [:admin, @pizza] do |f|
+  .row
+    .col-md-3
+      - if @pizza.errors.any?
+        .error-explanation{style: 'color: red;'}
+          %h2
+            = pluralize(@pizza.errors.count, 'error') + ' found'
+          %ul
+            - @pizza.errors.full_messages.each do |msg|
+              %li
+                = msg
+      .input-group
+        %span Nazwa:
+        = f.text_field :name, class: 'form-control', placeholder: 'Nazwa'
+      .input-group
+        %span Cena:
+        = f.text_field :price, class: 'form-control', placeholder: 'Cena'
+      .input-group
+        %span Cena promocyjna:
+        = f.text_field :promo_price, class: 'form-control', placeholder: 'Cena promocyjna'
+    .col-md-2
+    .col-md-6
+      - unless f.object.new_record?
+        %h5 Wybór składników pizzy:
+        %ul.admin_components
+          = f.collection_check_boxes :component_ids, @components, :id, :name do |c|
+            %li{:class => "#{c.object.name}"}
+              = c.check_box
+              %span
+                = c.object.name.capitalize
+  .row.clear
+    .input-group.mt10
+      = f.button 'Zapisz', class: 'btn btn-primary'

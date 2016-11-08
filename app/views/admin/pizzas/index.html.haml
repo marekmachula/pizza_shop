@@ -1,0 +1,21 @@
+.container
+  .row
+    %h3 Lista pizz
+    %h6= link_to 'Dodaj pizze', new_admin_pizza_path, class: 'btn btn-primary btn-sm'
+    %table.table.table-bordered
+      %tr
+        %th Nazwa
+        %th Cena
+        %th Cena promocyjna
+        %th Składniki
+        %th.text-center{:colspan => "2"} Akcje
+      - @pizzas.each do |pizza|
+        %tr
+          %td= pizza.name
+          %td= pizza.price
+          %td= pizza.promo_price
+          %td= pizza.components.try(:map, &:name).try(:join, ' ')
+          %td.text-center.no_wrap
+            = link_to 'Zmień', edit_admin_pizza_path(pizza), class: 'btn btn-primary btn-sm'
+          %td.text-center.no_wrap
+            = link_to 'Usuń', admin_pizza_path(pizza), method: :delete, class: 'btn btn-danger btn-sm'

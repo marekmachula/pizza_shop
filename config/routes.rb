@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'home#index'
 
+  namespace :admin do
+    resources :pizzas, except: [:show]
+    resources :components, except: [:show]
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

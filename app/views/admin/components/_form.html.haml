@@ -1,0 +1,20 @@
+= form_for [:admin, @component] do |f|
+  .row
+    .col-md-3
+      - if @component.errors.any?
+        .error-explanation{style: 'color: red;'}
+          %h2
+            = pluralize(@component.errors.count, 'error') + ' found'
+          %ul
+            - @component.errors.full_messages.each do |msg|
+              %li
+                = msg
+      .input-group
+        %span Nazwa:
+        = f.text_field :name, class: 'form-control', placeholder: 'Nazwa'
+      .input-group
+        %span Cena:
+        = f.text_field :price, class: 'form-control', placeholder: 'Cena'
+  .row.clear
+    .input-group.mt10
+      = f.button 'Zapisz', class: 'btn btn-primary'
