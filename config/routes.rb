@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:create]
   resources :cart_items, only: [:destroy]
+  resources :users, only: [:new, :create]
+  resources :orders, only: [:create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

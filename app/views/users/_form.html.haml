@@ -1,0 +1,34 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    .error-explanation{style: 'color: red;'}
+      %h2
+        = pluralize(@user.errors.count, 'error') + ' found'
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li
+            = msg
+  .row
+    .col-md-3
+      .input-group
+        %span Imię:
+        = f.text_field :name, class: 'form-control', placeholder: 'Imię'
+      .input-group
+        %span Nazwisko:
+        = f.text_field :surname, class: 'form-control', placeholder: 'Nazwisko'
+      .input-group
+        %span Email:
+        = f.text_field :email, class: 'form-control', placeholder: 'Email'
+    .col-md-3
+      .input-group
+        %span Telefon:
+        = f.text_field :phone, class: 'form-control', placeholder: 'Telefon'
+      .input-group
+        %span Ulica:
+        = f.text_field :street, class: 'form-control', placeholder: 'Ulica'
+      .input-group
+        %span Miasto:
+        = f.text_field :city, class: 'form-control', placeholder: 'Miasto'
+  .row.clear
+    .input-group.mt10
+      = f.button 'Złóż zamówienie', class: 'btn btn-primary'
+

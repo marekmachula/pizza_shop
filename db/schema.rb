@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108135032) do
+ActiveRecord::Schema.define(version: 20161108163206) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20161108135032) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "components", force: :cascade do |t|
@@ -38,12 +39,40 @@ ActiveRecord::Schema.define(version: 20161108135032) do
     t.integer "component_id", null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "pizza_name"
+    t.decimal  "pizza_price"
+    t.integer  "quantity"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "order_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pizzas", force: :cascade do |t|
     t.string   "name"
     t.decimal  "price"
     t.decimal  "promo_price"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "email"
+    t.string   "street"
+    t.string   "city"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

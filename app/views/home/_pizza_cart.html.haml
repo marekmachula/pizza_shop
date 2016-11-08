@@ -13,3 +13,8 @@
   %tr.total
     %td Razem
     %td.text-center{:colspan => "3"}= "%.2f zł" %@current_cart.total_amount
+.text-center
+  - if @current_cart.user.present?
+    = link_to 'Złóż zamówienie', new_order_path, class: 'btn btn-primary btn-sm'
+  - else
+    = link_to 'Zamów', new_user_path, class: 'btn btn-primary btn-sm'
