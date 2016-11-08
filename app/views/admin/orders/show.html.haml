@@ -1,0 +1,70 @@
+.container.order_details
+  .row
+    .col-md-6
+      %h3
+        %span
+          Szczegóły zamówienia nr
+          = @order.try(:number)
+  %hr
+  .row
+    .col-md-5
+      %table.table-bordered
+        %tr
+          %td Id zamówienia:
+          %td= @order.try(:number)
+        %tr
+          %td Email zamawiającego:
+          %td= @order.user.try(:email)
+        %tr
+          %td Imię i nazwisko:
+          %td= "#{@order.user.try(:name)} #{@order.user.try(:surname)}"
+
+    .col-md-4
+      %h4 Adres zamówienia:
+      %table.table-bordered
+        %tr
+          %td Adres ulica:
+          %td= @order.user.try(:street)
+        %tr
+          %td Miasto:
+          %td= @order.user.try(:city)
+        %tr
+          %td Nr telefonu:
+          %td= @order.user.try(:phone)
+    .col-md-2.text-center
+      = link_to 'Przenieś do zrealizowanych', '#', class: 'btn btn-success btn-sm'
+      .mt10
+        = link_to 'Anuluj zamówienie','#', class: 'btn btn-danger btn-sm'
+
+
+  %hr
+  %h3.mb10 Lista zamówienia:
+  .row
+    .col-md-9
+      %table.table-bordered.order_items
+        %tr.head
+          %td Nazwa
+          %td Cena
+          %td Ilość
+          %td Wartość
+        - @order.order_items.each do |order_item|
+          %tr.order_item
+            %td.name
+              = order_item.try(:pizza_name)
+            %td.no_wrap
+              = "%.2f zł" %order_item.try(:pizza_price)
+            %td.item_quantity.no_wrap
+              .label.label-primary= "x#{order_item.quantity}"
+            %td.amount
+              = "%.2f zł" %(order_item.try(:pizza_price) * order_item.quantity)
+        %tr.total.head
+          %td{colspan: "3", style: 'color: #C9302C;'}
+            .all Razem
+          %td.no_wrap{colspan: "2", style: 'font-weight: bolder; color: #C9302C;'}
+            .price_total= @order.present? && @order.total_amount.present? ? ("%.2f zł" %@order.total_amount.to_s) : '0 zł'
+
+  .row
+
+
+
+

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :pizzas, except: [:show]
     resources :components, except: [:show]
+    resources :orders, only: [:index, :show]
   end
 
   resources :carts, only: [:create]

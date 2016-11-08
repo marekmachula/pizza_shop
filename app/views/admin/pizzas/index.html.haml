@@ -12,8 +12,8 @@
       - @pizzas.each do |pizza|
         %tr
           %td= pizza.name
-          %td= pizza.price
-          %td= pizza.promo_price
+          %td= "%.2f zł" %pizza.price
+          %td= pizza.promo_price.blank?  ? '-' : "%.2f zł" %pizza.promo_price
           %td= pizza.components.try(:map, &:name).try(:join, ' ')
           %td.text-center.no_wrap
             = link_to 'Zmień', edit_admin_pizza_path(pizza), class: 'btn btn-primary btn-sm'

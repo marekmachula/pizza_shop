@@ -21,3 +21,11 @@ ul.admin_components{
   width:1%;
   white-space:nowrap;
 }
+.order_details{
+  table{
+    tr{
+      &.head{background-color: #add8e6;}
+      td{padding: 5px;}
+    }
+  }
+}

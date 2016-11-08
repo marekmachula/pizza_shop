@@ -1,0 +1,20 @@
+.container
+  .row
+    %h3 Lista zamówień
+    %table.table.table-bordered
+      %tr
+        %th.no_wrap Czas złożenia zamówienia
+        %th Numer zamówienia
+        %th.no_wrap Wartość zamówienia
+        %th{ colspan: 3} Akcje
+      - @orders.each do |order|
+        %tr
+          %td= order.order_at.strftime("%Y-%m-%d %H:%M")
+          %td= order.number
+          %td= "%.2f zł" %order.total_amount
+          %td.text-center.no_wrap
+            = link_to 'Szczegóły', admin_order_path(order), class: 'btn btn-primary btn-sm'
+          %td.text-center.no_wrap
+            = link_to 'Zamówienie zrealizowane', '#', class: 'btn btn-success btn-sm'
+          %td.text-center.no_wrap
+            = link_to 'Anuluj zamówienie', '#', class: 'btn btn-danger btn-sm'

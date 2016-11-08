@@ -8,8 +8,9 @@ class Pizza < ActiveRecord::Base
 
   #Validations
   validates :name, :price, presence: true
+  validates :name, uniqueness: true
   validates :price, numericality: { greater_than: 0 }
-  validates :promo_price, numericality: { greater_than: 0 }, allow_blank: true
+  validates :promo_price, numericality: { greater_than: 0, allow_blank: true }
 
   #Instance methods
   def current_price
