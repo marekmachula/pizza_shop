@@ -22,7 +22,7 @@
 /vendor/bundle/*
 
 /nbproject/
-
+/db/development.sqlite3
 /public/assets
 
 /public/system/

@@ -1,4 +1,28 @@
+%h2{style: 'margin-left: 50px;'}
+  Pizza Shop
 .container
   .row
-    %h2
-      Pizza Shop
+    .col-md-8
+      %h3 MENU
+      %table.table.pizza_list
+        - @pizzas.each do |pizza|
+          %tr
+            %td.name
+              %h4= pizza.name
+              %span= pizza.components.try(:map, &:name).try(:join, ' ')
+            %td.price.text-center
+              = "%.2f zł" %pizza_current_price(pizza)
+              = promotion_label(pizza)
+            %td.text-center.no_wrap
+              = form_for @cart, url: carts_path, method: :post do |f|
+                = f.hidden_field 'pizza_id', value: pizza.id
+                = button_to '', class: 'btn btn-warning btn-sm' do
+                  Do koszyka
+
+    .col-md-4
+      %h3 Koszyk
+      - if @current_cart.present?
+        = render 'pizza_cart'
+      - else
+        %h6 Twój koszyk jest pusty
+

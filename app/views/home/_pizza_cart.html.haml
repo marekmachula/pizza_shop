@@ -1,0 +1,15 @@
+%table.table.pizza_list
+  - @current_cart.cart_items.each do |cart_item|
+    %tr
+      %td.name{style: 'width: 40%;'}
+        %h5{style: 'font-weight: bold;'}=cart_item.pizza.try(:name)
+      %td.quantity
+        = "x#{cart_item.quantity}"
+      %td.text-right{style: 'min-width: 80px;'}
+        = "%.2f zł" %(pizza_current_price_total(cart_item.pizza, cart_item.quantity))
+      %td.remove
+        = link_to cart_item_path(cart_item), method: :delete, class: 'btn btn-xs btn-danger', title: 'Usuń pizzę' do
+          %i.glyphicon.glyphicon-remove
+  %tr.total
+    %td Razem
+    %td.text-center{:colspan => "3"}= "%.2f zł" %@current_cart.total_amount
